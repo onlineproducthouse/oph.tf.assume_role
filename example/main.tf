@@ -4,11 +4,10 @@ module "assume_role" {
   name   = "source-to-target"
   region = local.region
 
-  source_profile = local.source_profile
-  target_profile = local.target_profile
-
-  shared_config_files      = local.shared_config_files
-  shared_credentials_files = local.shared_credentials_files
+  providers = {
+    aws.source = aws.default
+    aws.target = aws.default
+  }
 
   source_group_identifiers = [
     { name = "group-name", arn = "iam-group-arn" }
@@ -28,6 +27,11 @@ module "assume_role" {
       })
     }
   ]
+}
+
+provider "aws" {
+  alias  = "default"
+  region = "us-east-1"
 }
 
 locals {
