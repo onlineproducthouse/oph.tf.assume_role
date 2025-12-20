@@ -3,26 +3,11 @@ terraform {
 
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "6.23.0"
+      source                = "hashicorp/aws"
+      version               = "6.23.0"
+      configuration_aliases = [aws.source, aws.target]
     }
   }
-}
-
-provider "aws" {
-  alias                    = "source"
-  region                   = var.region
-  profile                  = var.source_profile
-  shared_config_files      = var.shared_config_files
-  shared_credentials_files = var.shared_credentials_files
-}
-
-provider "aws" {
-  alias                    = "target"
-  region                   = var.region
-  profile                  = var.target_profile
-  shared_config_files      = var.shared_config_files
-  shared_credentials_files = var.shared_credentials_files
 }
 
 data "aws_iam_policy_document" "target" {

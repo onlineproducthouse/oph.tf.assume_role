@@ -10,32 +10,6 @@ variable "region" {
   nullable    = false
 }
 
-variable "source_profile" {
-  description = "Source account profile"
-  type        = string
-  nullable    = false
-}
-
-variable "target_profile" {
-  description = "Target account profile"
-  type        = string
-  nullable    = false
-}
-
-variable "shared_config_files" {
-  description = "Path to aws config file"
-  type        = list(string)
-  default     = ["~/.aws/config"]
-  nullable    = false
-}
-
-variable "shared_credentials_files" {
-  description = "Path to aws credentials file"
-  type        = list(string)
-  default     = ["~/.aws/credentials"]
-  nullable    = false
-}
-
 variable "source_group_identifiers" {
   description = "A list of ARNs for source IAM groups"
   default     = []
