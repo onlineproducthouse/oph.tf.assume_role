@@ -9,8 +9,8 @@ module "assume_role" {
     aws.target = aws.default
   }
 
-  source_group_identifiers = [
-    { name = "group-name", arn = "iam-group-arn" }
+  source_user_identifiers = [
+    { name = "user-name", arn = "iam-user-arn" }
   ]
 
   source_role_identifiers = [

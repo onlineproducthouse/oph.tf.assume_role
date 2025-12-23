@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "target" {
     principals {
       type = "AWS"
       identifiers = concat(
-        [for v in var.source_group_identifiers : v.arn],
+        [for v in var.source_user_identifiers : v.arn],
         [for v in var.source_role_identifiers : v.arn]
       )
     }
@@ -69,10 +69,10 @@ resource "aws_iam_policy" "source" {
   policy   = data.aws_iam_policy_document.source.json
 }
 
-resource "aws_iam_group_policy_attachment" "source_to_target" {
-  count      = length(var.source_group_identifiers)
+resource "aws_iam_user_policy_attachment" "source_to_target" {
+  count      = length(var.source_user_identifiers)
   provider   = aws.source
-  group      = var.source_group_identifiers[count.index].name
+  user       = var.source_user_identifiers[count.index].name
   policy_arn = aws_iam_policy.source.arn
 }
 

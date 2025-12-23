@@ -10,8 +10,8 @@ variable "region" {
   nullable    = false
 }
 
-variable "source_group_identifiers" {
-  description = "A list of ARNs for source IAM groups"
+variable "source_user_identifiers" {
+  description = "A list of ARNs for source IAM users"
   default     = []
   nullable    = false
 
