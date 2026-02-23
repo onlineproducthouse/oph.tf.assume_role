@@ -8,7 +8,6 @@ After you setup the configuration, see usage below, run `terraform init` to inst
 See [example/main.tf](./example/main.tf) for an example configuration.
 
 ## How it works
-
 ![diagram](./assets/oph.tf.assume_role.png)
 
 - IAM Users and Roles must be created in the source account
