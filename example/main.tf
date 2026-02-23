@@ -1,3 +1,9 @@
+# a second provider must be added for the target account
+provider "aws" {
+  alias  = "source"
+  region = "us-east-1"
+}
+
 module "assume_role" {
   source = "./.."
 
@@ -5,8 +11,8 @@ module "assume_role" {
   region = local.region
 
   providers = {
-    aws.source = aws.default
-    aws.target = aws.default
+    aws.source = aws.source
+    aws.target = aws.source # set to target account provider
   }
 
   source_user_identifiers = [
@@ -29,15 +35,10 @@ module "assume_role" {
   ]
 }
 
-provider "aws" {
-  alias  = "default"
-  region = "us-east-1"
-}
-
 locals {
   region                   = "us-east-1"
-  source_profile           = "ophadmin"
-  target_profile           = "default"
+  source_profile           = "source"
+  target_profile           = "target"
   shared_config_files      = ["~/.aws/config"]
   shared_credentials_files = ["~/.aws/credentials"]
 }
